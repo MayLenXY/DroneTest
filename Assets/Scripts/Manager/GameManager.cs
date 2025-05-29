@@ -5,6 +5,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private UISettings settingsUI;
+    [SerializeField] private LayerMask obstacleLayer;
+
+    [SerializeField] public GameObject deliveryEffectPrefab;
 
     public Transform redBase, blueBase;
     public GameObject resourcePrefab, dronePrefab;
@@ -68,18 +71,39 @@ public class GameManager : MonoBehaviour
         {
             var pos = baseTransform.position + (Vector3)(Random.insideUnitCircle);
             var droneGO = Instantiate(dronePrefab, pos, Quaternion.identity);
+
             droneGO.GetComponent<SpriteRenderer>().color = color;
-            droneGO.GetComponent<DroneController>().baseTransform = baseTransform;
+
+            var drone = droneGO.GetComponent<DroneController>();
+            drone.baseTransform = baseTransform;
+            drone.speed = settingsUI ? settingsUI.DroneSpeed : 2f;
         }
+
     }
 
     private void SpawnResource()
     {
-        var pos = (Vector2)Random.insideUnitCircle * spawnRadius;
-        var go = Instantiate(resourcePrefab, pos, Quaternion.identity);
-        var res = go.GetComponent<ResourceBehavior>();
-        if (res) RegisterResource(res);
+        for (int attempts = 0; attempts < 10; attempts++)
+        {
+            Vector2 spawnPosition = Random.insideUnitCircle * spawnRadius;
+
+            Collider2D hit = Physics2D.OverlapCircle(spawnPosition, 0.3f, obstacleLayer);
+
+            if (hit == null)
+            {
+                GameObject newResourceGO = Instantiate(resourcePrefab, spawnPosition, Quaternion.identity);
+                ResourceBehavior newResource = newResourceGO.GetComponent<ResourceBehavior>();
+
+                if (newResource != null)
+                    RegisterResource(newResource);
+                else
+                    Debug.LogError("Созданный ресурс не имеет компонента ResourceBehavior!");
+
+                return;
+            }
+        }
     }
+
 
     private IEnumerator TaskLoop()
     {
@@ -118,6 +142,14 @@ public class GameManager : MonoBehaviour
             }
 
             yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    public void ToggleDrawPath(bool state)
+    {
+        foreach (var drone in FindObjectsOfType<DroneController>())
+        {
+            drone.SetDrawPath(state);
         }
     }
 }

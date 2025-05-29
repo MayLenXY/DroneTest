@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class DroneController : MonoBehaviour
 {
+    [Header("Навигация")]
+    [SerializeField] private float avoidanceRadius = 1f;
+    [SerializeField] private float avoidanceForce = 1f;
+    [SerializeField] private LayerMask droneLayer;
+    [SerializeField] private LayerMask obstacleLayer;
+
+    [Header("Параметры")]
     public float speed = 2f;
     public Transform baseTransform;
 
@@ -12,10 +19,20 @@ public class DroneController : MonoBehaviour
 
     private bool isCarrying, isBusy, justDelivered;
 
+    private LineRenderer lineRenderer;
+    private bool drawPath = false;
+
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
         if (!gameManager) { Debug.LogError("GameManager не найден"); enabled = false; return; }
+
+        lineRenderer = GetComponent<LineRenderer>();
+        if (lineRenderer != null)
+        {
+            lineRenderer.positionCount = 2;
+            lineRenderer.enabled = false;
+        }
 
         gameManager.DroneIsAvailable(this);
         RequestTask();
@@ -25,14 +42,61 @@ public class DroneController : MonoBehaviour
     {
         if (isBusy && target)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            MoveToTarget(target.position);
 
             if (!isCarrying && !targetResource)
             {
                 ClearTarget();
                 RequestTask();
             }
+
+            // Отрисовка пути
+            if (drawPath && lineRenderer != null)
+            {
+                lineRenderer.enabled = true;
+                lineRenderer.SetPosition(0, transform.position);
+                lineRenderer.SetPosition(1, target.position);
+            }
         }
+        else if (lineRenderer != null)
+        {
+            lineRenderer.enabled = false;
+        }
+    }
+
+    private void MoveToTarget(Vector3 destination)
+    {
+        Vector3 direction = (destination - transform.position).normalized;
+
+        // Избежание других дронов
+        Collider2D[] nearbyDrones = Physics2D.OverlapCircleAll(transform.position, avoidanceRadius, droneLayer);
+        Vector3 avoidance = Vector3.zero;
+
+        foreach (var drone in nearbyDrones)
+        {
+            if (drone.gameObject != gameObject)
+            {
+                Vector3 away = transform.position - drone.transform.position;
+                avoidance += away.normalized / Mathf.Max(away.magnitude, 0.01f);
+            }
+        }
+
+        // Обход препятствий
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 0.5f, obstacleLayer);
+        if (hit.collider != null)
+        {
+            direction = Vector3.Cross(direction, Vector3.forward).normalized;
+        }
+
+        Vector3 finalDir = (direction + avoidance * avoidanceForce).normalized;
+        transform.position += finalDir * speed * Time.deltaTime;
+    }
+
+    public void SetDrawPath(bool value)
+    {
+        drawPath = value;
+        if (lineRenderer != null)
+            lineRenderer.enabled = value;
     }
 
     public void AssignResource(ResourceBehavior resource)
@@ -62,6 +126,17 @@ public class DroneController : MonoBehaviour
 
         if (isCarrying && other.transform == baseTransform && !justDelivered)
         {
+            if (gameManager != null)
+            {
+                gameManager.ResourceDelivered(baseTransform);
+
+                // ?? ЭФФЕКТ
+                if (gameManager.deliveryEffectPrefab != null)
+                {
+                    Instantiate(gameManager.deliveryEffectPrefab, baseTransform.position, Quaternion.identity);
+                }
+            }
+
             justDelivered = true;
             gameManager?.ResourceDelivered(baseTransform);
             ClearTarget();
@@ -80,7 +155,7 @@ public class DroneController : MonoBehaviour
         }
 
         Debug.Log($"[{gameObject.name}] Начинаю добычу ресурса {res.gameObject.name}...");
-        yield return new WaitForSeconds(2f); // ? Задержка "добычи"
+        yield return new WaitForSeconds(2f);
 
         res.Collect();
         Debug.Log($"[{gameObject.name}] Ресурс {res.gameObject.name} собран.");
@@ -88,8 +163,6 @@ public class DroneController : MonoBehaviour
         isCarrying = true;
         target = baseTransform;
         targetResource = null;
-
-        yield return null;
     }
 
     private IEnumerator ResetDelivery()
@@ -107,4 +180,10 @@ public class DroneController : MonoBehaviour
     }
 
     public bool IsBusy() => isBusy;
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, avoidanceRadius);
+    }
 }

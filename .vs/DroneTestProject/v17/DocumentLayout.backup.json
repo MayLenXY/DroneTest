@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Projects\\DroneTestProject\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6E5C9169-C220-82FD-B2E9-3748BD48F0E1}|Assembly-CSharp.csproj|c:\\projects\\dronetestproject\\assets\\scripts\\ui\\uisettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6E5C9169-C220-82FD-B2E9-3748BD48F0E1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\uisettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6E5C9169-C220-82FD-B2E9-3748BD48F0E1}|Assembly-CSharp.csproj|c:\\projects\\dronetestproject\\assets\\scripts\\ui\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6E5C9169-C220-82FD-B2E9-3748BD48F0E1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,12 +15,12 @@
       "RelativeMoniker": "D:0:0:{6E5C9169-C220-82FD-B2E9-3748BD48F0E1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\resources\\resourcebehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6E5C9169-C220-82FD-B2E9-3748BD48F0E1}|Assembly-CSharp.csproj|C:\\Projects\\DroneTestProject\\assets\\scripts\\manager\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6E5C9169-C220-82FD-B2E9-3748BD48F0E1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\manager\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6E5C9169-C220-82FD-B2E9-3748BD48F0E1}|Assembly-CSharp.csproj|C:\\Projects\\DroneTestProject\\assets\\scripts\\drone\\dreonecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6E5C9169-C220-82FD-B2E9-3748BD48F0E1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\drone\\dreonecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6E5C9169-C220-82FD-B2E9-3748BD48F0E1}|Assembly-CSharp.csproj|C:\\Projects\\DroneTestProject\\assets\\scripts\\manager\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6E5C9169-C220-82FD-B2E9-3748BD48F0E1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\manager\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,38 +35,51 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "UISettings.cs",
+              "DocumentMoniker": "C:\\Projects\\DroneTestProject\\Assets\\Scripts\\UI\\UISettings.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\UISettings.cs",
+              "ToolTip": "C:\\Projects\\DroneTestProject\\Assets\\Scripts\\UI\\UISettings.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UI\\UISettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T13:57:18.251Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "UIManager.cs",
               "DocumentMoniker": "C:\\Projects\\DroneTestProject\\Assets\\Scripts\\UI\\UIManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\UIManager.cs",
               "ToolTip": "C:\\Projects\\DroneTestProject\\Assets\\Scripts\\UI\\UIManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\UI\\UIManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-28T15:25:43.825Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ResourceBehavior.cs",
               "DocumentMoniker": "C:\\Projects\\DroneTestProject\\Assets\\Scripts\\Resources\\ResourceBehavior.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Resources\\ResourceBehavior.cs",
               "ToolTip": "C:\\Projects\\DroneTestProject\\Assets\\Scripts\\Resources\\ResourceBehavior.cs",
               "RelativeToolTip": "Assets\\Scripts\\Resources\\ResourceBehavior.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-28T14:30:36.45Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "GameManager.cs",
               "DocumentMoniker": "C:\\Projects\\DroneTestProject\\Assets\\Scripts\\Manager\\GameManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Manager\\GameManager.cs",
               "ToolTip": "C:\\Projects\\DroneTestProject\\Assets\\Scripts\\Manager\\GameManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\Manager\\GameManager.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwA8AAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-28T14:37:59.386Z",
               "EditorCaption": ""
@@ -75,7 +92,7 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\Drone\\DreoneController.cs",
               "ToolTip": "C:\\Projects\\DroneTestProject\\Assets\\Scripts\\Drone\\DreoneController.cs",
               "RelativeToolTip": "Assets\\Scripts\\Drone\\DreoneController.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAiwEUAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAADIAAAAAAAAAAAAiwEMAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-28T14:33:48.687Z",
               "EditorCaption": ""
